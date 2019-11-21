@@ -1,16 +1,25 @@
-from flask import Flask, render_template
+from bson.objectid import ObjectId
+from flask import Flask, render_template, request, redirect, url_for
+from pymongo import MongoClient
+from datetime import datetime
+import os
+
+
+client = MongoClient()
+db = client.Playlister
+playlists = db.playlists
 
 app = Flask(__name__)
 
-playlists = [
-    { 'title': 'Cat Videos', 'description': 'Cats acting weird' },
-    { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' }
-]
+# playlists = [
+#     { 'title': 'Cat Videos', 'description': 'Cats acting weird' },
+#     { 'title': '80\'s Music', 'description': 'Don\'t stop believing!' }
+# ]
 
 @app.route('/')
 def playlists_index():
     """Show all playlists."""
-    return render_template('playlists_index.html', playlists=playlists)
+    return render_template('playlists_index.html', playlists=playlists.find)
 
 
 
