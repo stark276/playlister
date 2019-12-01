@@ -1,0 +1,11 @@
+<!-- templates/playlists_show.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<a href='/'>HOME</a>
+<h1>{{ playlist.title }}</h1>
+<h2>{{ playlist.description }}</h2>
+{% for video in playlist.videos %}
+    <iframe width='600' height='315' src='{{ video }}'></iframe>
+{% endfor %}
+{% endblock %}

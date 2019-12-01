@@ -30,7 +30,7 @@ def playlists_new():
     return render_template('playlists_new.html')
 
 @app.route('/playlists', methods=['POST'])
-def playlists_submit():
+def playlists_idds():
     """Submit a new playlist."""
                                                              # Grab the video IDs and make a list out of them
     video_ids = request.form.get('video_ids').split()
@@ -45,13 +45,15 @@ def playlists_submit():
         'videos': videos,
         'video_ids': video_ids
     }
-    
-    playlists.insert_one(playlist)
-    
-
-    return redirect(url_for('playlists_index'))
+    playlist_id = playlists.insert_one(playlist).inserted_id
+    return redirect(url_for('playlists_show', playlist_id=playlist_id))
 
 
+@app.route('/playlists/<playlist_id>')
+def playlists_show(playlist_id):
+    """Show a single playlist."""
+    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    return render_template('playlists_show.html', playlist=playlist)
 
 
 
