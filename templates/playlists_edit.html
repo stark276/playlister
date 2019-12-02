@@ -2,8 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <form action='/playlists' method='POST'>
     <!-- Add this line instead of all the form code -->
     {% include 'partials/playlists_form.html' %}
 </form>
+
 {% endblock %}
