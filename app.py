@@ -27,10 +27,10 @@ def playlists_index():
 @app.route('/playlists/new')
 def playlists_new():
     """Create a new playlist."""
-    return render_template('playlists_new.html', playlist=playlist, title='Edit Playlist')
+    return render_template('playlists_new.html', playlist={}, title='New Playlist')
 
 @app.route('/playlists', methods=['POST'])
-def playlists_idds():
+def playlists_submit():
     """Submit a new playlist."""
                                                              # Grab the video IDs and make a list out of them
     video_ids = request.form.get('video_ids').split()
@@ -55,11 +55,7 @@ def playlists_show(playlist_id):
     playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
     return render_template('playlists_show.html', playlist=playlist)
 
-@app.route('/playlists/<playlist_id>/edit')
-def playlists_edit(playlist_id):
-    """Show a single playlist."""
-    
-    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist') 
+
     # ---------------------------------------------
 
 @app.route('/playlists/<playlist_id>', methods=['POST'])
@@ -80,6 +76,12 @@ def playlists_update(playlist_id):
         {'$set': updated_playlist})
     # take us back to the playlist's show page
     return redirect(url_for('playlists_show', playlist_id=playlist_id))
+
+@app.route('/playlists/<playlist_id>/edit')
+def playlists_edit(playlist_id):
+    """Show a single playlist."""
+    playlist = playlists.find_one({'_id': ObjectId(playlist_id)})
+    return render_template('playlists_edit.html', playlist=playlist, title='Edit Playlist')
 
 
 
