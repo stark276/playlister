@@ -7,5 +7,9 @@
     <!-- Add this line instead of all the form code -->
     {% include 'partials/playlists_form.html' %}
 </form>
+<hr>
+   <form action="/playlists">
+    <input type="button" onclick="window.location.href='/playlists/{{ playlist._id }}';"value="cancel"/>
+    </form>
 
 {% endblock %}

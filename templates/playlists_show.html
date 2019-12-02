@@ -12,5 +12,12 @@
 <hr>
 <!-- # Add this link -->
 <p><a href='/playlists/{{ playlist._id }}/edit'>Edit</a></p>
+
+<!-- BUTTON -->
+<form action='/playlists/{{ playlist._id }}/delete' method='POST'>
+    <input type="submit" value="Delete">
+</form>
+
+
     
 {% endblock %}
