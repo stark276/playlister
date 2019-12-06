@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<form action='/playlists' method='POST'>
+<form action='/playlists/{{ playlist._id }}' method='POST'>
     <!-- Add this line instead of all the form code -->
     {% include 'partials/playlists_form.html' %}
 </form>
