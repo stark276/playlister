@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/kanietos/Desktop/Term2/bew hm/playlister/env"
+set -gx VIRTUAL_ENV "/Users/kanietos/Desktop/Term2/BEW 1.1/playlister/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
