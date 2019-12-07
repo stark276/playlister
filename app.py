@@ -4,12 +4,12 @@ from pymongo import MongoClient
 import os
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
-client = MongoClient(host=host)
+client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 playlists = db.playlists
 
 
-app = Flask(__name__)
+
 
 
 def video_url_creator(id_lst):
@@ -20,6 +20,7 @@ def video_url_creator(id_lst):
         videos.append(video)
     return videos
 
+app = Flask(__name__)
 
 @app.route('/')
 def playlists_index():
@@ -93,4 +94,4 @@ def playlists_delete(playlist_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
