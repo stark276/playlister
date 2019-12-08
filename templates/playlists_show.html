@@ -6,10 +6,12 @@
 <h1>{{ playlist.title }}</h1>
 <h2>{{ playlist.description }}</h2>
 {% for video in playlist.videos %}
-    <iframe width='600' height='315' src='{{ video }}'></iframe>
+    <iframe width='900' height='415' src='{{ video }}'></iframe>
 {% endfor %}
 <br />
 <hr>
+
+
 <!-- # Add this link -->
 <p><a href='/playlists/{{ playlist._id }}/edit'>Edit</a></p>
 
@@ -20,6 +22,10 @@
 
 <!-- Comment form -->
 {% include 'partials/comment_form.html' %}
+
+{% for comment in comments %}
+    {{comment.title}}
+{% endfor %}
 
     
 {% endblock %}
