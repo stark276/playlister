@@ -23,8 +23,13 @@
 <!-- Comment form -->
 {% include 'partials/comment_form.html' %}
 
+
+
 {% for comment in comments %}
-    {{comment.title}}
+
+{% include 'partials/comment.html' %}
+    
+
 {% endfor %}
 
     

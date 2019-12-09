@@ -107,14 +107,18 @@ def comments_new():
     }
     print(comment)
 
+
     comment_id = comments.insert_one(comment).inserted_id
 
-    """Submit a new comment."""
-      # TODO: Fill in the code here to build the comment object,
-    # and then insert it into the MongoDB comments collection
     return redirect(url_for('playlists_show', playlist_id=request.form.get('playlist_id')))
+# /playlists/plsylidt_id/comments/<comment_id>
 
 
+@app.route('/playlists/comments/<comment_id>', methods=['POST'])
+def comments_delete(comment_id):
+    comment = comments.find_one({'_id': ObjectId(comment_id)})
+    comments.delete_one({'_id': ObjectId(comment_id)})
+    return redirect(url_for('playlists_show', playlist_id=comment.get('playlist_id')))
 
 
 if __name__ == '__main__':
